@@ -2,23 +2,23 @@ using UnityEngine;
 
 public class MiniGame : MonoBehaviour
 {
-    // ตัวแปรที่ต้องลากใส่ใน Inspector
+    
     public GameObject miniGameUI;
     public RectTransform fishIndicator;
     public RectTransform catchZone;
 
-    // ตัวแปรการเคลื่อนที่และการจำกัดขอบเขต
+    
     public float gravity = 400f;
     public float jumpForce = 200f;
     public float topLimit = 200f;
     public float bottomLimit = -200f;
 
-    // ตัวแปรใหม่สำหรับการเคลื่อนที่ของ CatchZone
-    public float catchZoneSpeed = 5f;    // ความเร็วในการขยับ
-    public float catchZoneAmplitude = 300f; // ระยะขยับสูงสุด
+  
+    public float catchZoneSpeed = 5f;    
+    public float catchZoneAmplitude = 300f; 
 
     [Range(0f, 125f)]
-    public float catchTolerance = 100f;  // ค่าเผื่อในการจับปลา
+    public float catchTolerance = 100f; 
 
     private float velocityY = 0f;
     private Cat playerCat;
@@ -26,9 +26,9 @@ public class MiniGame : MonoBehaviour
     private bool isActive = false;
     private bool isInsideZone = false;
 
-    private float initialCatchZoneY; // ตำแหน่ง Y เริ่มต้นของ CatchZone
+    private float initialCatchZoneY; 
 
-    // -------------------------------------------------------------------
+    
 
     public void StartMiniGame(Fish fish, Cat cat)
     {
@@ -43,7 +43,7 @@ public class MiniGame : MonoBehaviour
         // กำหนดให้ตัวชี้ปลาเริ่มที่ขีดจำกัดล่างสุด
         fishIndicator.anchoredPosition = new Vector2(0, bottomLimit);
 
-        // บันทึกตำแหน่ง Y เริ่มต้นของ CatchZone
+        
         initialCatchZoneY = catchZone.anchoredPosition.y;
     }
 
@@ -51,7 +51,7 @@ public class MiniGame : MonoBehaviour
     {
         if (!isActive) return;
 
-        // 1. การควบคุมและการเคลื่อนที่ของ FishIndicator
+        
         if (Input.GetMouseButtonDown(0))
         {
             velocityY = jumpForce;
@@ -60,30 +60,30 @@ public class MiniGame : MonoBehaviour
         velocityY -= gravity * Time.deltaTime;
         fishIndicator.anchoredPosition += new Vector2(0, velocityY * Time.deltaTime);
 
-        // 2. จำกัดขอบแถบของ FishIndicator
+       
         float currentY = fishIndicator.anchoredPosition.y;
         currentY = Mathf.Clamp(currentY, bottomLimit, topLimit);
         fishIndicator.anchoredPosition = new Vector2(0, currentY);
 
-        // 2.5 Logic การเคลื่อนที่ของ CatchZone (ใช้ Sine Wave)
+        
         float newCatchZoneY = initialCatchZoneY + Mathf.Sin(Time.time * catchZoneSpeed) * catchZoneAmplitude;
         catchZone.anchoredPosition = new Vector2(0, newCatchZoneY);
 
 
-        // 3. การตรวจสอบการทับซ้อน (ใช้ตำแหน่งใหม่ที่เคลื่อนที่แล้ว)
+        
         float indicatorY = fishIndicator.anchoredPosition.y;
 
-        // ดึงตำแหน่งแกน Y ที่เคลื่อนที่แล้วของ CatchZone
+        
         float catchZoneY = catchZone.anchoredPosition.y;
 
-        // คำนวณความสูงครึ่งหนึ่ง
+        
         float zoneHalfHeight = catchZone.rect.height / 2f;
 
-        // คำนวณขอบเขตโซนจับปลาที่รวมค่าเผื่อ
+        
         float zoneTop = catchZoneY + zoneHalfHeight + catchTolerance;
         float zoneBottom = catchZoneY - zoneHalfHeight - catchTolerance;
 
-        // ตรวจสอบเงื่อนไข
+        
         if (indicatorY >= zoneBottom && indicatorY <= zoneTop)
         {
             isInsideZone = true;
@@ -93,7 +93,7 @@ public class MiniGame : MonoBehaviour
             isInsideZone = false;
         }
 
-        // 4. เช็คว่ากด Space เพื่อตัดสินใจจับ
+        
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (isInsideZone)
@@ -103,8 +103,7 @@ public class MiniGame : MonoBehaviour
         }
     }
 
-    // -------------------------------------------------------------------
-
+    
     void WinMiniGame()
     {
         isActive = false;
@@ -118,13 +117,12 @@ public class MiniGame : MonoBehaviour
         Debug.Log("Success! You caught the fish!");
     }
 
-    // ใน MiniGame.cs
-    public void LoseMiniGame() // ต้องเป็น public!
+    
+    public void LoseMiniGame() 
     {
         isActive = false;
         miniGameUI.SetActive(false);
 
-        // เคลียร์ตัวแปรอ้างอิงของปลาเท่านั้น
         currentFish = null;
 
         Debug.Log("Failed! The fish escaped!");

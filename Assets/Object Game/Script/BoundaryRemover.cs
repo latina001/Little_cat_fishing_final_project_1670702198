@@ -12,8 +12,7 @@ public class BoundaryRemover : MonoBehaviour
         {
             if (miniGameManager != null)
             {
-                // 1. **สำคัญ**: สั่งให้ MiniGame component หยุดทำงานทันที (แก้ปัญหาค้าง)
-                
+               
 
                 // 2. ทำลายปลา
                 Destroy(other.gameObject);
