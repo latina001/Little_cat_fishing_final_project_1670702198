@@ -3,55 +3,34 @@ using UnityEngine.UI;
 
 public class MiniGame : MonoBehaviour
 {
-    public GameObject miniGameUI;       // Panel UI
     public RectTransform fishIndicator; // ตัวชี้ปลา
-    public RectTransform catchZone;     // โซนจับปลา
-    public float gravity = 300f;        // แรงโน้มถ่วง
-    public float jumpForce = 150f;      // ความเร็วเมื่อคลิก
-    private float velocityY = 0f;
-
-    public float catchZoneSpeed = 50f;  // ความเร็ว CatchZone
-    public float catchZoneRange = 150f; // ขอบเขตที่ CatchZone เดิน
-
-    private Cat playerCat;
+    public RectTransform catchZone;     // โซนที่ต้องอยู่
+    public float speed = 100f;          // ความเร็วปลา
+    public Cat playerCat;
     private Fish currentFish;
     private bool isActive = false;
-    private float catchZoneDirection = 1f; // 1 = ขึ้น, -1 = ลง
 
     public void StartMiniGame(Fish fish, Cat cat)
     {
         currentFish = fish;
         playerCat = cat;
         isActive = true;
-        velocityY = 0f;
 
-        miniGameUI.SetActive(true);
+        // วาง fishIndicator เริ่มต้น
         fishIndicator.anchoredPosition = new Vector2(0, 0);
-
-        Debug.Log("Mini-game started! Keep the fish in the moving green zone!");
+        Debug.Log("Mini-game started! Align the fish in the catch zone!");
     }
 
     private void Update()
     {
         if (!isActive) return;
 
-        // FishIndicator คลิกเมาส์เพื่อกระโดด
-        if (Input.GetMouseButtonDown(0)) velocityY = jumpForce;
+        // เคลื่อน fishIndicator ขึ้นลง
+        float move = speed * Time.deltaTime;
+        if (Input.GetKey(KeyCode.UpArrow)) move = speed * Time.deltaTime;
+        if (Input.GetKey(KeyCode.DownArrow)) move = -speed * Time.deltaTime;
 
-        // Gravity
-        velocityY -= gravity * Time.deltaTime;
-        fishIndicator.anchoredPosition += new Vector2(0, velocityY * Time.deltaTime);
-
-        // ขอบบน-ล่าง FishIndicator
-        float topLimit = 200f;
-        float bottomLimit = -200f;
-        if (fishIndicator.anchoredPosition.y > topLimit) fishIndicator.anchoredPosition = new Vector2(0, topLimit);
-        if (fishIndicator.anchoredPosition.y < bottomLimit) fishIndicator.anchoredPosition = new Vector2(0, bottomLimit);
-
-        // ขยับ CatchZone ขึ้นลง
-        catchZone.anchoredPosition += new Vector2(0, catchZoneSpeed * catchZoneDirection * Time.deltaTime);
-        if (catchZone.anchoredPosition.y > catchZoneRange) catchZoneDirection = -1f;
-        if (catchZone.anchoredPosition.y < -catchZoneRange) catchZoneDirection = 1f;
+        fishIndicator.anchoredPosition += new Vector2(0, move);
 
         // ตรวจสอบว่าปลาติดใน catchZone
         if (Input.GetKeyDown(KeyCode.Space))
@@ -72,15 +51,13 @@ public class MiniGame : MonoBehaviour
     {
         isActive = false;
         playerCat.CatchFish(currentFish);
-        miniGameUI.SetActive(false);
-        Debug.Log("สำเร็จ! คุณจับปลาได้แล้ว!");
+        Debug.Log("Success! You caught the fish!");
     }
 
     void LoseMiniGame()
     {
         isActive = false;
+        Debug.Log("Failed! The fish escaped!");
         Destroy(currentFish.gameObject);
-        miniGameUI.SetActive(false);
-        Debug.Log("ล้มเหลว! ปลาหลุด!");
     }
 }
