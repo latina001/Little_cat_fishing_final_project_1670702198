@@ -901,6 +901,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4677263578392996823, guid: fb37e24e4918a104499e039a489fb6c7, type: 3}
+      propertyPath: fishPrefabs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4677263578392996823, guid: fb37e24e4918a104499e039a489fb6c7, type: 3}
+      propertyPath: 'fishPrefabs.Array.data[2]'
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7288286325280613208, guid: fb37e24e4918a104499e039a489fb6c7, type: 3}
       propertyPath: m_Name
       value: GameManager
