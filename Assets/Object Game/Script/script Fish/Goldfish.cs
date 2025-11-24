@@ -13,4 +13,9 @@ public class Goldfish : Fish
     {
         transform.Translate(Vector2.left * speed * Time.deltaTime);
     }
+    void Update()
+    {
+        Swim();
+    }
+
 }
