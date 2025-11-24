@@ -679,6 +679,10 @@ PrefabInstance:
       propertyPath: fishIndicator
       value: 
       objectReference: {fileID: 842140433}
+    - target: {fileID: 1222500979944812143, guid: c41fe35eb8de0db4486b088c42780f99, type: 3}
+      propertyPath: catchZoneSpeed
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8195598124846404552, guid: c41fe35eb8de0db4486b088c42780f99, type: 3}
       propertyPath: m_Name
       value: Mini game
