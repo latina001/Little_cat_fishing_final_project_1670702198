@@ -1,45 +1,63 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MiniGame : MonoBehaviour
 {
-    public GameObject miniGameUI;      // UI Panel ของมินิเกม
-    public RectTransform fishIndicator;
-    public RectTransform catchZone;
-    public float speed = 100f;
+    public GameObject miniGameUI;       // Panel UI
+    public RectTransform fishIndicator; // ตัวชี้ปลา
+    public RectTransform catchZone;     // โซนจับปลา
+    public float gravity = 300f;        // แรงโน้มถ่วง
+    public float jumpForce = 150f;      // ความเร็วเมื่อคลิก
+    private float velocityY = 0f;
+
+    public float catchZoneSpeed = 50f;  // ความเร็ว CatchZone
+    public float catchZoneRange = 150f; // ขอบเขตที่ CatchZone เดิน
 
     private Cat playerCat;
     private Fish currentFish;
     private bool isActive = false;
+    private float catchZoneDirection = 1f; // 1 = ขึ้น, -1 = ลง
 
     public void StartMiniGame(Fish fish, Cat cat)
     {
         currentFish = fish;
         playerCat = cat;
         isActive = true;
+        velocityY = 0f;
 
         miniGameUI.SetActive(true);
-
-        // ตั้งตำแหน่งเริ่ม
         fishIndicator.anchoredPosition = new Vector2(0, 0);
 
-        Debug.Log("MiniGame Started");
+        Debug.Log("Mini-game started! Keep the fish in the moving green zone!");
     }
 
-    void Update()
+    private void Update()
     {
         if (!isActive) return;
 
-        // ขยับปลาด้วยปุ่ม Up/Down (อันนี้คุณจะเปลี่ยนเป็นแรงโน้มถ่วงก็ได้)
-        float move = 0f;
-        if (Input.GetKey(KeyCode.UpArrow)) move = speed * Time.deltaTime;
-        if (Input.GetKey(KeyCode.DownArrow)) move = -speed * Time.deltaTime;
+        // FishIndicator คลิกเมาส์เพื่อกระโดด
+        if (Input.GetMouseButtonDown(0)) velocityY = jumpForce;
 
-        fishIndicator.anchoredPosition += new Vector2(0, move);
+        // Gravity
+        velocityY -= gravity * Time.deltaTime;
+        fishIndicator.anchoredPosition += new Vector2(0, velocityY * Time.deltaTime);
 
-        // กด Space เพื่อตรวจว่าทับหรือไม่
+        // ขอบบน-ล่าง FishIndicator
+        float topLimit = 175f;
+        float bottomLimit = -175f;
+        if (fishIndicator.anchoredPosition.y > topLimit) fishIndicator.anchoredPosition = new Vector2(0, topLimit);
+        if (fishIndicator.anchoredPosition.y < bottomLimit) fishIndicator.anchoredPosition = new Vector2(0, bottomLimit);
+
+        // ขยับ CatchZone ขึ้นลง
+        catchZone.anchoredPosition += new Vector2(0, catchZoneSpeed * catchZoneDirection * Time.deltaTime);
+        if (catchZone.anchoredPosition.y > catchZoneRange) catchZoneDirection = -1f;
+        if (catchZone.anchoredPosition.y < -catchZoneRange) catchZoneDirection = 1f;
+
+        // ตรวจสอบว่าปลาติดใน catchZone
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (IsOverlap(fishIndicator, catchZone))
+            if (fishIndicator.anchoredPosition.y >= catchZone.anchoredPosition.y - catchZone.sizeDelta.y / 2 &&
+                fishIndicator.anchoredPosition.y <= catchZone.anchoredPosition.y + catchZone.sizeDelta.y / 2)
             {
                 WinMiniGame();
             }
@@ -50,41 +68,19 @@ public class MiniGame : MonoBehaviour
         }
     }
 
-    // ---------------------------
-    // ใช้เช็คการชนแบบ UI เป๊ะที่สุด
-    // ---------------------------
-    bool IsOverlap(RectTransform a, RectTransform b)
-    {
-        Rect rectA = new Rect(
-            a.anchoredPosition - (a.sizeDelta * 0.5f),
-            a.sizeDelta
-        );
-
-        Rect rectB = new Rect(
-            b.anchoredPosition - (b.sizeDelta * 0.5f),
-            b.sizeDelta
-        );
-
-        return rectA.Overlaps(rectB);
-    }
-
     void WinMiniGame()
     {
         isActive = false;
-        miniGameUI.SetActive(false);
-
         playerCat.CatchFish(currentFish);
-
+        miniGameUI.SetActive(false);
         Debug.Log("Success! You caught the fish!");
     }
 
     void LoseMiniGame()
     {
         isActive = false;
-        miniGameUI.SetActive(false);
-
         Destroy(currentFish.gameObject);
-
+        miniGameUI.SetActive(false);
         Debug.Log("Failed! The fish escaped!");
     }
 }
