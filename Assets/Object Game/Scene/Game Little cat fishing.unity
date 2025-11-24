@@ -416,6 +416,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fishPrefabs:
   - {fileID: 7133839790158042071, guid: 183237fbc86a33c459089e25b8f2eeba, type: 3}
+  - {fileID: 6346749653012796850, guid: 887189faf1a1aca47aea867f9cdbea02, type: 3}
   spawnPoints:
   - {fileID: 1237597246}
   spawnInterval: 5
