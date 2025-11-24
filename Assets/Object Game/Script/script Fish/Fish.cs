@@ -7,4 +7,5 @@ public abstract class Fish : MonoBehaviour
     public float speed;
 
     public abstract void Swim();
+
 }

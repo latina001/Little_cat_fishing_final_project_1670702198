@@ -6,7 +6,7 @@ public class Salmon : Fish
     {
         fishName = "Salmon";
         points = 5;
-        speed = 15f;
+        speed = 3f;
     }
 
     public override void Swim()

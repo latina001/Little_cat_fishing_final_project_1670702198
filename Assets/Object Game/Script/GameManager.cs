@@ -5,7 +5,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] fishPrefabs;
     public Transform[] spawnPoints;
 
-    public float spawnInterval = 2f;
+    public float spawnInterval = 10f;
     private float timer;
 
     void Update()

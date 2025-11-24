@@ -8,17 +8,17 @@ public class MiniGame : MonoBehaviour
     public RectTransform catchZone;
 
     // ตัวแปรการเคลื่อนที่และการจำกัดขอบเขต
-    public float gravity = 300f;
-    public float jumpForce = 150f;
+    public float gravity = 400f;
+    public float jumpForce = 200f;
     public float topLimit = 200f;
     public float bottomLimit = -200f;
 
     // ตัวแปรใหม่สำหรับการเคลื่อนที่ของ CatchZone
-    public float catchZoneSpeed = 1f;    // ความเร็วในการขยับ
-    public float catchZoneAmplitude = 100f; // ระยะขยับสูงสุด
+    public float catchZoneSpeed = 5f;    // ความเร็วในการขยับ
+    public float catchZoneAmplitude = 300f; // ระยะขยับสูงสุด
 
-    [Range(0f, 50f)]
-    public float catchTolerance = 15f;  // ค่าเผื่อในการจับปลา
+    [Range(0f, 125f)]
+    public float catchTolerance = 100f;  // ค่าเผื่อในการจับปลา
 
     private float velocityY = 0f;
     private Cat playerCat;
@@ -118,15 +118,14 @@ public class MiniGame : MonoBehaviour
         Debug.Log("Success! You caught the fish!");
     }
 
-    void LoseMiniGame()
+    // ใน MiniGame.cs
+    public void LoseMiniGame() // ต้องเป็น public!
     {
         isActive = false;
         miniGameUI.SetActive(false);
 
-        if (currentFish != null)
-        {
-            Destroy(currentFish.gameObject);
-        }
+        // เคลียร์ตัวแปรอ้างอิงของปลาเท่านั้น
+        currentFish = null;
 
         Debug.Log("Failed! The fish escaped!");
     }
