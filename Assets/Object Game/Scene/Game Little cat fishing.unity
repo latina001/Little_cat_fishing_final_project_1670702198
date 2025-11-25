@@ -407,7 +407,7 @@ GameObject:
   - component: {fileID: 775249087}
   - component: {fileID: 775249086}
   m_Layer: 0
-  m_Name: spawn2 (1)
+  m_Name: spawn delete
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -744,6 +744,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -724.7
       objectReference: {fileID: 0}
+    - target: {fileID: 3505670526407208132, guid: e560434de9f18f84686f39030cfc9f4b, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 4849075491240839209, guid: e560434de9f18f84686f39030cfc9f4b, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -902,13 +906,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4677263578392996823, guid: fb37e24e4918a104499e039a489fb6c7, type: 3}
+      propertyPath: spawnInterval
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4677263578392996823, guid: fb37e24e4918a104499e039a489fb6c7, type: 3}
       propertyPath: fishPrefabs.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4677263578392996823, guid: fb37e24e4918a104499e039a489fb6c7, type: 3}
       propertyPath: 'fishPrefabs.Array.data[2]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7095110226223426896, guid: 518e7294a507f4343bd3b90779689961, type: 3}
+    - target: {fileID: 4677263578392996823, guid: fb37e24e4918a104499e039a489fb6c7, type: 3}
+      propertyPath: 'fishPrefabs.Array.data[3]'
+      value: 
+      objectReference: {fileID: 8642320771018150378, guid: 3c84231801016b74bb0001d30c339a83, type: 3}
     - target: {fileID: 7288286325280613208, guid: fb37e24e4918a104499e039a489fb6c7, type: 3}
       propertyPath: m_Name
       value: GameManager
