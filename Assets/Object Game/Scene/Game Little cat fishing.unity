@@ -402,6 +402,7 @@ GameObject:
   m_Component:
   - component: {fileID: 631238330}
   - component: {fileID: 631238329}
+  - component: {fileID: 631238331}
   m_Layer: 0
   m_Name: "\u0E20\u0E32\u0E1E\u0E27\u0E32\u0E14111_0 (1)"
   m_TagString: Untagged
@@ -479,6 +480,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &631238331
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 631238328}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d5f6cf197070db94183af95be55a9776, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &738678828
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1040,6 +1063,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1093650773}
   - component: {fileID: 1093650772}
+  - component: {fileID: 1093650774}
   m_Layer: 0
   m_Name: "\u0E20\u0E32\u0E1E\u0E27\u0E32\u0E14111_0 (2)"
   m_TagString: Untagged
@@ -1117,6 +1141,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1093650774
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1093650771}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5f2f16c0f21e756428b93a8ed4e03b69, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1462308178
 GameObject:
   m_ObjectHideFlags: 0
@@ -1127,6 +1173,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1462308180}
   - component: {fileID: 1462308179}
+  - component: {fileID: 1462308181}
   m_Layer: 0
   m_Name: "\u0E20\u0E32\u0E1E\u0E27\u0E32\u0E14111_0"
   m_TagString: Untagged
@@ -1204,6 +1251,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1462308181
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462308178}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 70a24133090cf2242ac15c9b41c4c369, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1533908491
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1519,11 +1588,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4789432171416655344, guid: e560434de9f18f84686f39030cfc9f4b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 883.68317
+      value: 883.6831
       objectReference: {fileID: 0}
     - target: {fileID: 4789432171416655344, guid: e560434de9f18f84686f39030cfc9f4b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.49505615
+      value: -0.49499512
       objectReference: {fileID: 0}
     - target: {fileID: 4849075491240839209, guid: e560434de9f18f84686f39030cfc9f4b, type: 3}
       propertyPath: m_Pivot.x
