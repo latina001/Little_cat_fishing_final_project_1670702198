@@ -8,8 +8,8 @@ public class MiniGame : MonoBehaviour
     public RectTransform catchZone;
 
     
-    public float gravity = 400f;
-    public float jumpForce = 200f;
+    public float gravity =1500f;
+    public float jumpForce =400f;
     public float topLimit = 200f;
     public float bottomLimit = -200f;
 
