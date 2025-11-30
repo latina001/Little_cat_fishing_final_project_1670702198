@@ -2,16 +2,15 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject[] fishPrefabs;
-    public Transform[] spawnPoints;
+    [SerializeField] private GameObject[] fishPrefabs;
+    [SerializeField] private Transform[] spawnPoints;
+    [SerializeField] private float spawnInterval;
 
-    public float spawnInterval = 10f;
     private float timer;
 
     void Update()
     {
         timer += Time.deltaTime;
-
         if (timer >= spawnInterval)
         {
             SpawnFish();
@@ -19,13 +18,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void SpawnFish()
+    private void SpawnFish()
     {
         int fishIndex = Random.Range(0, fishPrefabs.Length);
         int spawnIndex = Random.Range(0, spawnPoints.Length);
 
-        Instantiate(fishPrefabs[fishIndex],
-                    spawnPoints[spawnIndex].position,
-                    Quaternion.identity);
+        Instantiate(fishPrefabs[fishIndex], spawnPoints[spawnIndex].position, Quaternion.identity);
     }
 }

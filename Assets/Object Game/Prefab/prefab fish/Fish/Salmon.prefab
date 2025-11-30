@@ -104,8 +104,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fishName: 
-  points: 0
-  speed: 5
+  points: 10
+  speed: 8
 --- !u!61 &966783938526839408
 BoxCollider2D:
   m_ObjectHideFlags: 0

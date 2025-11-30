@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fishName: gim
   points: 1
-  speed: 20
+  speed: 2
 --- !u!212 &8780892202380836074
 SpriteRenderer:
   m_ObjectHideFlags: 0

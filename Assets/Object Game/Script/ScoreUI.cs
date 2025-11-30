@@ -10,7 +10,7 @@ public class ScoreUI : MonoBehaviour
     {
         if (playerCat != null)
         {
-            scoreText.text = "" + playerCat.score;
+            scoreText.text = "" + playerCat.Score;
         }
     }
 }

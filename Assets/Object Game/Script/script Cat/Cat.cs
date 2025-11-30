@@ -2,13 +2,14 @@
 
 public class Cat : MonoBehaviour
 {
-    public int score;
-    [Tooltip("ลาก UI ที่ต้องการให้เปิดตอน Game Over ที่นี่")]
-    public GameObject[] gameOverUIs;  // ใส่ UI ได้หลายตัว
+    [SerializeField] private int score;
+    [SerializeField] private GameObject[] gameOverUIs;
+
+    public int Score => score; 
 
     public void CatchFish(Fish fish)
     {
-        score += fish.points;
+        score += fish.Points;
         Destroy(fish.gameObject);
 
         if (score < 0)
@@ -17,18 +18,15 @@ public class Cat : MonoBehaviour
         }
     }
 
-    void GameOver()
+    private void GameOver()
     {
         Debug.Log("Game Over");
 
-        // เปิด UI ทุกตัวที่ลากเข้ามา
         foreach (GameObject ui in gameOverUIs)
         {
-            if (ui != null)
-                ui.SetActive(true);
+            if (ui != null) ui.SetActive(true);
         }
 
-        // หยุดการควบคุมแมว
-        this.enabled = false;
+  
     }
 }
